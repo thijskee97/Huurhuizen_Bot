@@ -3,10 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from main import submit
 from webscraping_with_sel import aantal_woningen_zoekopdracht
 
-
+#create database
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database_users1.sqlite"
 db = SQLAlchemy(app)
+
+#line up of variabels
 submit = submit()
 stad = submit[0]
 minprijs = submit[1]
@@ -14,7 +16,7 @@ maxprijs = submit[2]
 telnr = submit[3]
 aantal_woningen = aantal_woningen_zoekopdracht(stad=stad,minprijs=minprijs,maxprijs=maxprijs)
 
-
+#tables
 class Preference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     stad = db.Column(db.String, nullable=True)
@@ -24,7 +26,7 @@ class Preference(db.Model):
     aantal_woningen_db = db.Column(db.Integer)
 
 
-
+#adding data
 db.session.add(Preference(stad=stad, minprijs=minprijs,maxprijs=maxprijs, telnr=telnr,aantal_woningen_db=aantal_woningen))
 db.session.commit()
 

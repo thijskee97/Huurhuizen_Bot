@@ -3,7 +3,10 @@ import time
 from main import submit
 
 stad = submit()
-def aantal_woningen_zoekopdracht(stad,minprijs,maxprijs):
+
+
+# find the amount of houses
+def aantal_woningen_zoekopdracht(stad, minprijs, maxprijs):
     CHROME_DRIVER_PATH = "C:\Develpment\chromedriver.exe"
     driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH)
     driver.get(f'https://www.pararius.nl/huurwoningen/{stad}/{minprijs}-{maxprijs}')
